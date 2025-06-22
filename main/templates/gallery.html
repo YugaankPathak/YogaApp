@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="hero-animate">
+<div class="container">
+        <div class="gallery-header">
+            <h1>Gallery</h1>
+            <p class="subtitle">Moments from Our Yoga Journey</p>
+        </div>
+
+        <div class="gallery-container">
+            <div class="gallery-description">
+                <p>Explore our vibrant yoga community through these captured moments of practice, learning, and transformation. From serene meditation sessions to dynamic asana flows, witness the journey of wellness and inner peace.</p>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox(0)">
+                    <img src="{{ url_for('static', filename='images/1.jpg') }}" alt="Yoga Session 1">
+                    <div class="gallery-overlay">View Image</div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox(1)">
+                    <img src="{{ url_for('static', filename='images/2.jpg') }}" alt="Meditation Practice">
+                    <div class="gallery-overlay">View Image</div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox(2)">
+                    <img src="{{ url_for('static', filename='images/3.jpg') }}" alt="Group Yoga Class">
+                    <div class="gallery-overlay">View Image</div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox(3)">
+                    <img src="{{ url_for('static', filename='images/4.jpg') }}" alt="Therapeutic Session">
+                    <div class="gallery-overlay">View Image</div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox(4)">
+                    <img src="{{ url_for('static', filename='images/5.jpg') }}" alt="Pranayama Practice">
+                    <div class="gallery-overlay">View Image</div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox(5)">
+                    <img src="{{ url_for('static', filename='images/6.jpg') }}" alt="Advanced Asanas">
+                    <div class="gallery-overlay">View Image</div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox(6)">
+                    <img src="{{ url_for('static', filename='images/7.jpg') }}" alt="Yoga Workshop">
+                    <div class="gallery-overlay">View Image</div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox(7)">
+                    <img src="{{ url_for('static', filename='images/8.jpg') }}" alt="Outdoor Yoga">
+                    <div class="gallery-overlay">View Image</div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox(8)">
+                    <img src="{{ url_for('static', filename='images/9.jpg') }}" alt="Individual Therapy">
+                    <div class="gallery-overlay">View Image</div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox(9)">
+                    <img src="{{ url_for('static', filename='images/10.jpg') }}" alt="Community Event">
+                    <div class="gallery-overlay">View Image</div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox(9)">
+                    <img src="{{ url_for('static', filename='images/11.jpg') }}" alt="Community Event">
+                    <div class="gallery-overlay">View Image</div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox(9)">
+                    <img src="{{ url_for('static', filename='images/12.jpg') }}" alt="Community Event">
+                    <div class="gallery-overlay">View Image</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <div class="lightbox-content">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <span class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">&#10094;</span>
+            <span class="lightbox-nav lightbox-next" onclick="changeImage(1)">&#10095;</span>
+            <img id="lightbox-img" src="" alt="">
+            <div class="lightbox-counter">
+                <span id="current-image">1</span> / <span id="total-images">10</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentImageIndex = 0;
+        const images = [
+            "{{ url_for('static', filename='images/1.jpg') }}",
+            "{{ url_for('static', filename='images/2.jpg') }}",
+            "{{ url_for('static', filename='images/3.jpg') }}",
+            "{{ url_for('static', filename='images/4.jpg') }}",
+            "{{ url_for('static', filename='images/5.jpg') }}",
+            "{{ url_for('static', filename='images/6.jpg') }}",
+            "{{ url_for('static', filename='images/7.jpg') }}",
+            "{{ url_for('static', filename='images/8.jpg') }}",
+            "{{ url_for('static', filename='images/9.jpg') }}",
+            "{{ url_for('static', filename='images/10.jpg') }}",
+             "{{ url_for('static', filename='images/11.jpg') }}",
+            "{{ url_for('static', filename='images/12.jpg') }}"
+        ];
+
+        const imageAlts = [
+            "Yoga Session 1",
+            "Meditation Practice", 
+            "Group Yoga Class",
+            "Therapeutic Session",
+            "Pranayama Practice",
+            "Advanced Asanas",
+            "Yoga Workshop",
+            "Outdoor Yoga",
+            "Individual Therapy",
+            "Community Event"
+        ];
+
+        function openLightbox(index) {
+            currentImageIndex = index;
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const currentCounter = document.getElementById('current-image');
+            
+            lightboxImg.src = images[index];
+            lightboxImg.alt = imageAlts[index];
+            currentCounter.textContent = index + 1;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox(event) {
+            if (event && event.target !== event.currentTarget && !event.target.classList.contains('lightbox-close')) {
+                return;
+            }
+            
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function changeImage(direction) {
+            currentImageIndex += direction;
+            
+            if (currentImageIndex >= images.length) {
+                currentImageIndex = 0;
+            } else if (currentImageIndex < 0) {
+                currentImageIndex = images.length - 1;
+            }
+            
+            const lightboxImg = document.getElementById('lightbox-img');
+            const currentCounter = document.getElementById('current-image');
+            
+            lightboxImg.src = images[currentImageIndex];
+            lightboxImg.alt = imageAlts[currentImageIndex];
+            currentCounter.textContent = currentImageIndex + 1;
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox.classList.contains('active')) {
+                if (event.key === 'Escape') {
+                    closeLightbox();
+                } else if (event.key === 'ArrowLeft') {
+                    changeImage(-1);
+                } else if (event.key === 'ArrowRight') {
+                    changeImage(1);
+                }
+            }
+        });
+    </script>
+{% endblock %}

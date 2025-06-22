@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+        <div class="hero-animate">
+            <div class="card founder-highlight">
+                <h2>Our Founder & Instructor</h2>
+                <div class="founder-name">Acharya Manish Choubey</div>
+                <div class="founder-content cert-section">
+                    <div class="cert-list">
+                        <p>
+                        Brings over five years of teaching and therapeutic experience with comprehensive certifications:
+                        </p>
+                        <ul>
+                        <li><a href="{{url_for('static', filename='images/c6.jpeg')}}" >Yoga Trainer Certification (Parmanand Institute, 2018)</a></li>
+                        <li><a href="{{url_for('static', filename='images/c5.jpeg')}}" >Yoga Therapy Certification (Parmanand Institute, 2018)</a></li>
+                        <li><a href="{{url_for('static', filename='images/c2.jpeg')}}" >21-Day Better Living Course (The Yoga Institute, 2022)</a></li>
+                        <li><a href="{{url_for('static', filename='images/c1.jpeg')}}" >Mastery in Splits & Back-bending Asana Anatomy (Shivom Yoga Academy, 2022)</a></li>
+                        <li><a href="{{url_for('static', filename='images/c3.jpeg')}}" >Advanced Teachers' Training (900 hrs, The Yoga Institute, 2023)</a></li>
+                        <li><a href="{{url_for('static', filename='images/c4.jpeg')}}" >Yoga Teacher & Evaluator Certification (AYUSH, Ministry of India, 2023)</a></li>
+                        </ul>
+                    </div>
+                    <img
+                        src="{{ url_for('static', filename='images/cert.jpeg') }}"
+                        alt="Acharya Manish Choubey Certification"
+                        class="cert__img"
+                    />
+                    </div>
+            </div>
+        </div>
+{% endblock %}
