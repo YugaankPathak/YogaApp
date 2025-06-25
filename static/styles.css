@@ -11,7 +11,7 @@
             --text-dark: #2c2c2c;
             --text-light: #666;
             --white: #ffffff;
-            --gradient-primary: linear-gradient(135deg, #8fac47 0%, #a4bf5a 100%);
+            --gradient-primary: linear-gradient(135deg, #dada65 0%, #d9dd5e 100%);
             --gradient-secondary: linear-gradient(135deg, #f8f9f5 0%, #eef2e8 100%);
             --shadow-soft: 0 10px 30px rgba(143, 172, 71, 0.15);
             --shadow-hover: 0 15px 40px rgba(143, 172, 71, 0.2);
@@ -152,10 +152,18 @@
             min-height: 100vh;
             background: var(--gradient-primary);
             display: flex;
+            flex-direction: column; 
             align-items: center;
             justify-content: center;
             position: relative;
             overflow: hidden;
+            padding-top: 2rem;
+            gap: 1.5rem; 
+        }
+
+        .hero-img {
+            max-width: 100%;
+            height: auto;
         }
 
         .hero::before {
@@ -172,12 +180,12 @@
         .hero-content {
             text-align: center;
             color: var(--white);
-            max-width: 800px;
+            max-width: 300px;
             padding: 2rem;
             position: relative;
             z-index: 2;
         }
-
+       
         .hero h1 {
             font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 300;
@@ -205,13 +213,12 @@
             border-radius: 50px;
             font-weight: 600;
             transition: all 0.3s ease;
-            opacity: 0;
+            opacity: 1;
             transform: translateY(30px);
-            animation: fadeInUp 1s ease 0.9s forwards;
             position: relative;
             overflow: hidden;
         }
-
+        
         .cta-button::before {
             content: '';
             position: absolute;
@@ -228,7 +235,6 @@
         }
 
         .cta-button:hover {
-            transform: translateY(-2px);
             box-shadow: var(--shadow-hover);
         }
 
